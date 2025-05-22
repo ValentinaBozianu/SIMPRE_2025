@@ -1,5 +1,11 @@
 
+
+// /pages/index.js
+
+import MainPage from "@/components/MainPage";
+
 export default function Home() {
-  return ( <div>Hello World!</div>
+  return (
+    <MainPage />
   );
 }
