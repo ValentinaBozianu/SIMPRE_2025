@@ -6,7 +6,7 @@ const Ssr = ({data}) => {
         <div>  Hello, {data?.name?.title} {data?.name?.last} {data?.name?.first}</div> 
     )
 }
-
+  
 export default Ssr
 
 export async function getServerSideProps() {
@@ -18,4 +18,4 @@ export async function getServerSideProps() {
          data:data.results[0]
         }
     }
-}
+} 
