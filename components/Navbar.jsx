@@ -11,7 +11,7 @@ const Navbar = () => {
           <Link href="/">
             <span className="text-white hover:text-gray-200 cursor-pointer">Home</span>
           </Link>
-          <Link href="/flowers/add">
+          <Link href="/flowers/addFlower">
             <span className="text-white hover:text-gray-200 cursor-pointer">Add Flower</span>
           </Link>
           <Link href="/wishlist">
