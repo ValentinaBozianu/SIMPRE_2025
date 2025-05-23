@@ -33,7 +33,7 @@ const Chatbot = () => {
 
   return (
     <div className="mt-6 p-4 bg-white rounded-lg shadow max-w-xl mx-auto">
-      <h2 className="text-xl font-bold mb-2 text-green-700">Ask SIMPRE_2025 About Flowers</h2>
+      <h2 className="text-xl font-bold mb-2 text-green-700">About flowers...</h2>
       <div className="h-40 overflow-y-auto mb-2 border p-2 rounded">
         {messages.map((msg, index) => (
           <p key={index} className={msg.role === "user" ? "text-right text-blue-600" : "text-left text-green-800"}>

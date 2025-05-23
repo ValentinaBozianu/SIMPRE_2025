@@ -1,5 +1,6 @@
 // components/MainPage.jsx
 import { useState, useEffect } from "react";
+import styles from "@/styles/FlowerStyles.module.css";
 
 const MainPage = () => {
   const [flowers, setFlowers] = useState([]);
@@ -40,37 +41,35 @@ const MainPage = () => {
   };
 
   if (loading) {
-    return <div className="text-center">Loading flowers...</div>;
+    return (
+      <div className={styles.loading}>
+        <p className="text-lg text-gray-600">Loading flowers...</p>
+      </div>
+    );
   }
 
   return (
-    <div className="mt-6 p-4 bg-white rounded-lg shadow max-w-4xl mx-auto">
-      <h2 className="text-xl font-bold mb-4 text-green-700">Explore Flowers for SIMPRE_2025</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Explore Flowers for SIMPRE_2025</h2>
       {flowers.length === 0 ? (
         <p className="text-center text-gray-600">No flowers available.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={styles.gridContainer}>
           {flowers.map((flower) => (
-            <div
-              key={flower._id}
-              className="p-4 border border-green-200 rounded-lg shadow hover:shadow-md transition-shadow"
-            >
-              <h3 className="text-lg font-semibold text-green-800">{flower.title}</h3>
-              <p className="text-gray-600">{flower.description}</p>
-              <p className="text-sm text-gray-500">Price: {flower.price || "N/A"}€</p>
-              <p className="text-sm text-gray-500">Care Tips: {flower.careTips || "N/A"}</p>
-              <button
-                onClick={() => addToWishlist(flower)}
-                className="mt-2 bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-              >
+            <div key={flower._id} className={styles.card}>
+              <h3 className={styles.cardTitle}>{flower.title}</h3>
+              <p className={styles.textSecondary}>{flower.description}</p>
+              <p className={styles.textMuted}>Price: {flower.price || "N/A"}€</p>
+              <p className={styles.textMuted}>Care Tips: {flower.careTips || "N/A"}</p>
+              <button onClick={() => addToWishlist(flower)} className={styles.buttonPrimary}>
                 Add to Wishlist
               </button>
             </div>
           ))}
         </div>
       )}
-      <div className="mt-6 text-center">
-        <a href="/flowers/addFlower" className="text-green-600 hover:underline">
+      <div className="mt-8 text-center">
+        <a href="/flowers/addFlower" className={styles.link}>
           Add a new flower
         </a>
       </div>

@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #b6dcff;          
+  color: #65174a;                      
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+
+button {
+  border: 2px solid  #863e6d;           
+  background-color:  #863e6d;
+  color: #08172f;                      
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;              
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #E8F5E9;           
+  border-color:  #863e6d;
+}
+
+
+input {
+  border: 2px solid #AED9A7;          
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  color: #08172f;  
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+
+a {
+  color: #08172f;  
+  text-decoration: underline;
+}
+
+a:hover {
+  color:#08172f;   
+}
