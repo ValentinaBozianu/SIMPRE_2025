@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getRecords } from "@/utils/recordsFunctions";
+import { getFlowers } from "@/utils/recordsFunctions";
 
 const MainPage = () => {
   const router = useRouter();
@@ -8,7 +8,7 @@ const MainPage = () => {
 
   const fetchFlowers = async () => {
     try {
-      const response = await getRecords();
+      const response = await getFlowers();
       setFlowers(response);
     } catch (error) {
       console.error("Error fetching flowers:", error);
@@ -17,6 +17,17 @@ const MainPage = () => {
 
   const handleAddFlower = () => {
     router.push("/flowers/add");
+  };
+
+  const addToWishlist = (flower) => {
+    const currentWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!currentWishlist.some((item) => item._id === flower._id)) {
+      const updatedWishlist = [...currentWishlist, flower];
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      alert(`${flower.name} added to wishlist!`);
+    } else {
+      alert(`${flower.name} is already in your wishlist!`);
+    }
   };
 
   useEffect(() => {
@@ -39,6 +50,12 @@ const MainPage = () => {
               <p className="text-gray-600">{flower.description}</p>
               <p className="text-sm text-gray-500">Price: {flower.price}€</p>
               <p className="text-sm text-gray-500">Care: {flower.careTips}</p>
+              <button
+                onClick={() => addToWishlist(flower)}
+                className="mt-2 bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+              >
+                Add to Wishlist
+              </button>
             </div>
           ))}
         </div>
