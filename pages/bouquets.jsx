@@ -32,7 +32,7 @@ const Bouquets = () => {
 
   const createBouquet = () => {
     if (selectedFlowers.length < 1 || selectedFlowers.some((id) => !id)) {
-      alert("Please select at least a flowers to create a bouquet!");
+      alert("Please select at least a flower to create a bouquet!");
       return;
     }
 
