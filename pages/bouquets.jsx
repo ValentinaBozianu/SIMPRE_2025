@@ -2,8 +2,23 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getFlowers } from "@/utils/recordsFunctions";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
 
 const Bouquets = () => {
+const { isSignedIn, isLoaded } = useUser();
+const router = useRouter();
+
+if (!isLoaded) return null;
+
+if (!isSignedIn) {
+  if (typeof window !== "undefined") {
+    router.push("/sign-in?redirected=true");
+  }
+  return null;
+}
+
   const [flowers, setFlowers] = useState([]);
   const [selectedFlowers, setSelectedFlowers] = useState([]);
   const [bouquets, setBouquets] = useState([]);

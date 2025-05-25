@@ -1,8 +1,24 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
 
 const Gardens = () => {
+const { isSignedIn, isLoaded } = useUser();
+const router = useRouter();
+
+if (!isLoaded) return null;
+
+if (!isSignedIn) {
+  if (typeof window !== "undefined") {
+    router.push("/sign-in?redirected=true");
+  }
+  return null;
+}
+
+
   const gardenStyles = [
     "Minimalist Garden",
     "Japanese Garden",

@@ -4,9 +4,27 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Spinner from "@/components/Spinner";
 import { getFlowers, createFlower, deleteFlower } from "@/utils/recordsFunctions";
+import { useUser, SignIn } from "@clerk/nextjs";
+
+
+  
 
 const Wishlist = () => {
   const router = useRouter();
+  const { isSignedIn, isLoaded } = useUser();
+  if (!isLoaded) return null;
+
+
+
+useEffect(() => {
+  if (isLoaded && !isSignedIn) {
+    router.push("/sign-in?redirected=true");
+  }
+}, [isLoaded, isSignedIn]);
+
+if (!isLoaded || !isSignedIn) return null;
+
+
   const [isLoading, setIsLoading] = useState(true);
   const [flowers, setFlowers] = useState([]);
   const [newFlower, setNewFlower] = useState({ name: "", description: "", price: "", careTips: "" });
@@ -52,6 +70,19 @@ const Wishlist = () => {
   const handleUpdate = (id) => {
     router.push(`/records/edit?id=${id}`);
   };
+
+  if (!isLoaded) return null; 
+
+if (!isSignedIn) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-green-50">
+      <div className="bg-white p-6 rounded-lg shadow-md text-center">
+        <h2 className="text-lg font-semibold mb-4">You must be signed in to access your wishlist</h2>
+        <SignIn mode="modal" />
+      </div>
+    </div>
+  );
+}
 
   return (
     <div className="min-h-screen flex flex-col bg-green-50">
